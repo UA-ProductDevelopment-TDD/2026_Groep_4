@@ -1,0 +1,184 @@
+/* Bittle Link console. Uses the host's --line, --accent, --muted and --text tokens (base.css defines them standalone). */
+.bittle-console h4 { margin: 18px 0 8px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.bittle-console .note { font-size: 12px; color: var(--muted); line-height: 1.6; margin: 14px 0 0; }
+.bittle-console .hidden { display: none !important; }
+.console-top { display: flex; gap: 10px; align-items: stretch; }
+.console-status { flex: 1; margin: 0; padding: 10px 12px; background: #111a22; border-radius: 6px; color: var(--accent); }
+.console-top button { padding-inline: 18px; }
+.bittle-console.offline .console-status { color: var(--muted); }
+.bittle-console.offline .console-pad button, .bittle-console.offline .console-grid button:not(.custom-add), .bittle-console.offline .settings-rows button { opacity: .55; }
+/* Postures and skills in groups: the group's name beside its buttons, or above them in a narrow console. */
+.button-groups { display: grid; gap: 8px; }
+.button-group { display: grid; grid-template-columns: 110px 1fr; align-items: start; gap: 10px; }
+.button-group-name { font-size: 12px; color: var(--muted); padding-top: 8px; }
+/* Robot settings: one row per setting, its name, then its buttons side by side (on, off). */
+.settings-rows { display: grid; gap: 6px; max-width: 560px; }
+.settings-row { display: grid; grid-template-columns: 140px 1fr; align-items: center; gap: 10px; }
+.settings-name { font-size: 13px; color: var(--muted); }
+.settings-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.settings-buttons button { padding: 7px 6px; font-size: 12px; }
+.console-layout { display: grid; grid-template-columns: 250px 1fr; gap: 22px; }
+.gait-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.gait-chips button { padding: 4px 9px; font-size: 12px; border-radius: 14px; }
+.gait-chips button.selected { background: #304036; border-color: var(--accent); color: var(--accent); }
+.console-pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+.console-pad button { aspect-ratio: 1; font-size: 26px; padding: 0; background: #1d2831; }
+.console-pad button:active { background: #3a4c38; }
+.console-pad .pad-stop { color: #f7a29b; border-color: #6b3f3b; background: #2a1d1f; }
+.console-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 6px; }
+.console-grid button { padding: 8px 6px; font-size: 12px; white-space: normal; line-height: 1.25; }
+.console-grid button.risky { color: #f4c16d; border-color: #5f4c2c; }
+.console-joints { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 4px; }
+.console-joints summary { cursor: pointer; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; list-style: none; text-transform: none; letter-spacing: normal; margin: 0; }
+.console-joints summary::-webkit-details-marker { display: none; }
+.console-joints summary h4::before { content: '▸ '; }
+.console-joints[open] summary h4::before { content: '▾ '; }
+.console-joints summary .note { margin: 0; }
+/* Joint panel: Petoi Skill Composer layout, robot seen from above with the head at the top. */
+.joint-sliders { display: grid; grid-template-columns: 1fr minmax(120px, 170px) 1fr; grid-template-areas: "head head head" "lf body rf" "lb body rb"; gap: 12px 16px; margin-top: 10px; align-items: start; }
+.area-head { grid-area: head; justify-self: center; width: min(100%, 520px); } .joint-claw { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 6px; } .area-body { grid-area: body; } .area-lf { grid-area: lf; } .area-rf { grid-area: rf; } .area-lb { grid-area: lb; } .area-rb { grid-area: rb; }
+.area-lf, .area-lb { justify-self: end; } .area-rf, .area-rb { justify-self: start; }
+.joint-leg { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px 10px; background: #0f171e; }
+.joint-leg-title { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); text-align: center; margin-bottom: 6px; }
+.joint-leg-sliders { display: flex; gap: 10px; }
+.joint-control { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 6px; border-radius: 7px; border: 1px solid transparent; transition: background .15s, border-color .15s; }
+.joint-control.active { background: #1e2c22; border-color: var(--accent); }
+.joint-label { font-size: 12px; color: #c7d3da; white-space: nowrap; }
+.joint-label b { color: var(--accent); font-family: Consolas, monospace; font-weight: 600; }
+.joint-control input[type=range] { accent-color: var(--accent); padding: 0; }
+.joint-control.vertical input[type=range] { writing-mode: vertical-lr; direction: rtl; height: 150px; width: 22px; }
+.joint-control:not(.vertical) { border-color: var(--line); background: #0f171e; }
+.joint-control:not(.vertical).active { background: #1e2c22; border-color: var(--accent); }
+.joint-control:not(.vertical) input[type=range] { width: 100%; }
+.joint-control input[type=number] { width: 62px; text-align: center; }
+.joint-centre { display: flex; justify-content: center; }
+.joint-diagram { width: 100%; max-width: 170px; height: auto; }
+.joint-diagram .body { fill: #2a3540; stroke: #4f606c; }
+.joint-diagram .head { fill: #3a4752; stroke: #5d6f7c; }
+.joint-diagram .caption { fill: var(--muted); font-size: 8px; text-anchor: middle; letter-spacing: 1px; }
+.joint-diagram .caption.small { font-size: 6px; letter-spacing: 0; }
+.joint-diagram .side { fill: var(--muted); font-size: 9px; text-anchor: middle; font-weight: 600; }
+.servo-dot { cursor: pointer; outline: none; }
+.servo-dot circle { fill: #18222b; stroke: #6b7d8a; stroke-width: 1.2; transition: fill .15s, stroke .15s; }
+.servo-dot text { fill: var(--text); font: 600 8px Consolas, monospace; text-anchor: middle; pointer-events: none; }
+.servo-dot.active circle, .servo-dot:focus-visible circle { fill: var(--accent); stroke: var(--accent); }
+.servo-dot.active text, .servo-dot:focus-visible text { fill: #18250d; }
+.joint-layout { container: joints / inline-size; }
+.joint-range { display: flex; justify-content: space-between; width: 100%; font-size: 10px; color: var(--muted); gap: 6px; }
+.joint-control.vertical .joint-range { justify-content: center; white-space: nowrap; }
+@container joints (max-width: 600px) {
+  /* Narrow panels keep the composer arrangement (legs at the corners, body in the middle) in a compact size. */
+  .joint-sliders { grid-template-columns: minmax(0, 1fr) minmax(54px, 80px) minmax(0, 1fr); grid-template-areas: "head head head" "lf body rf" "lb body rb"; gap: 6px; }
+  .area-lf, .area-lb, .area-rf, .area-rb { justify-self: stretch; }
+  .area-head { width: 100%; }
+  .joint-diagram { max-width: 80px; }
+  .joint-centre { align-items: center; }
+  .joint-leg { padding: 4px 3px 6px; }
+  .joint-leg-title { font-size: 9px; margin-bottom: 2px; letter-spacing: .5px; }
+  .joint-leg-sliders { gap: 0; justify-content: space-around; }
+  .joint-control { padding: 2px; gap: 3px; }
+  .joint-label { font-size: 10px; white-space: normal; text-align: center; line-height: 1.15; }
+  .joint-control.vertical .joint-label b { display: block; }
+  .joint-control.vertical input[type=range] { height: clamp(64px, calc(12vh - 18px), 110px); }
+  .joint-control input[type=number] { width: 46px; font-size: 11px; padding: 3px 2px; }
+  .joint-range { font-size: 9px; }
+  .joint-control:not(.vertical) { display: grid; grid-template-columns: auto 1fr 50px; align-items: center; gap: 6px; padding: 4px 8px; }
+  .joint-control:not(.vertical) .joint-range { display: none; }
+}
+.joint-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.joint-actions button { font-size: 12px; padding: 6px 10px; }
+.bittle-console.offline .joint-sliders { opacity: .7; }
+.console-custom-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--line); }
+.console-custom-head .note { margin: 0 0 8px; }
+.console-tools { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+.console-tools span { display: flex; gap: 6px; }
+.console-tools button { font-size: 12px; padding: 5px 10px; }
+.custom-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+.custom-grid button { min-height: 52px; font-weight: 600; position: relative; }
+.custom-grid button small { position: absolute; top: 4px; right: 7px; font-weight: 400; opacity: .7; }
+.custom-grid .custom-add { border-style: dashed; background: transparent; color: var(--muted); font-weight: 400; }
+.custom-grid button.running { outline: 2px solid var(--accent); outline-offset: 2px; animation: console-pulse 1s ease-in-out infinite alternate; }
+@keyframes console-pulse { to { filter: brightness(1.3); } }
+.bittle-console .color-green { background: #2c3d2a; border-color: #58724a; color: #d2edae; }
+.bittle-console .color-blue { background: #1f3244; border-color: #3f6687; color: #b9dcf7; }
+.bittle-console .color-amber { background: #3d321d; border-color: #7a6334; color: #f6d9a0; }
+.bittle-console .color-red { background: #3d2224; border-color: #7a4447; color: #ffc6bc; }
+.bittle-console .color-violet { background: #2f2540; border-color: #634d85; color: #dccbfa; }
+.bittle-console .color-grey { background: #2a333b; border-color: #4f5d68; color: #d6e1e8; }
+.console-editor { margin-top: 14px; padding: 16px; border: 1px solid #4f606c; border-radius: 8px; background: #121b23; }
+.console-editor h4 { margin: 0; }
+.editor-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+.editor-head .note { margin: 0; }
+.editor-fields { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; margin-bottom: 14px; }
+.editor-fields > label:first-child { display: flex; flex-direction: column; gap: 6px; font-size: 12px; flex: 1; min-width: 200px; }
+.editor-colors { display: flex; flex-direction: column; gap: 6px; font-size: 12px; }
+.editor-colors > div { display: flex; gap: 6px; }
+.bittle-console .swatch { width: 28px; height: 28px; padding: 0; border-radius: 50%; }
+.bittle-console .swatch[aria-pressed=true] { outline: 2px solid var(--text); outline-offset: 2px; }
+.step-list { display: grid; gap: 6px; }
+.step-list .note { margin: 0 0 6px; }
+.step-row { display: grid; grid-template-columns: 22px 150px 1fr 110px auto; gap: 7px; align-items: center; }
+.step-number { color: var(--muted); font: 12px Consolas, monospace; text-align: right; }
+.step-row input:not([type=number]), .step-row select { width: 100%; }
+.step-wait { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--muted); }
+.step-wait input { width: 78px; }
+.bittle-console .row-actions { display: flex; gap: 5px; }
+.bittle-console .row-actions button { padding: 5px 9px; }
+.editor-step-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0 16px; }
+.editor-step-actions .check { margin-left: auto; }
+.console-editor-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+@media (max-width: 760px) {
+  .console-layout { grid-template-columns: 1fr; }
+  .console-drive { max-width: 280px; }
+  .step-row { grid-template-columns: 22px 1fr auto; }
+  .step-row > input, .step-row > select:not(:first-of-type) { grid-column: 2 / -1; }
+  .step-wait { grid-column: 2; }
+}
+
+/* The console adapts to its container: narrow hosts (Studio's inspector) stack the pad above the grids. */
+.bittle-console { container: console / inline-size; }
+@container console (max-width: 600px) {
+  .console-layout { grid-template-columns: 1fr; gap: 6px; }
+  .console-drive { max-width: 260px; width: 100%; margin: 0 auto; }
+  .console-grid { grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 4px; }
+  .console-grid button { padding: 6px 3px; font-size: 11px; }
+  .settings-row { grid-template-columns: 1fr; gap: 3px; }
+  .button-groups { gap: 4px; }
+  .button-group { grid-template-columns: 1fr; gap: 2px; }
+  .button-group-name { font-size: 10px; line-height: 1.1; padding-top: 0; text-transform: uppercase; letter-spacing: .04em; }
+  /* Slimmer buttons in groups, so that their captions add no height: the Skills tab still fits at 1280 × 720. */
+  .button-groups .console-grid button { padding: 4px 3px; line-height: 1.15; }
+  .settings-buttons button { padding: 6px 3px; font-size: 11px; }
+  .bittle-console h4 { margin: 10px 0 6px; }
+  .console-custom-head { flex-wrap: wrap; }
+  .console-top button { padding-inline: 12px; }
+  .step-row { grid-template-columns: 18px 1fr auto; }
+  .step-row > input, .step-row > select:not(:first-of-type) { grid-column: 2 / -1; }
+  .step-wait { grid-column: 2; }
+}
+
+/* Left legs: minimum at the top (mirrors the right side). */
+.joint-control.vertical.inverted input[type=range] { direction: ltr; }
+/* The head: its largest angle, looking left, on the left. */
+.joint-control.mirrored input[type=range] { direction: rtl; }
+
+/* Tab mode (narrow hosts such as Studio's Robot control panel). */
+.console-tabs { display: flex; gap: 2px; margin: 10px 0 8px; border-bottom: 1px solid var(--line); }
+.console-tabs button { flex: 1; min-width: 0; padding: 7px 2px; font-size: 12px; background: none; border: 0; border-bottom: 2px solid transparent; border-radius: 0; color: var(--muted); }
+.console-tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.console-pane.hidden { display: none; }
+.bittle-console.tabbed .console-pane > [data-section] > h4:first-child,
+.bittle-console.tabbed .console-pane > [data-section] > div:first-child h4 { margin-top: 4px; }
+
+/* Section heading with a replay button (Skills, My skills). */
+.bittle-console .section-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.bittle-console .section-head h4 { margin-bottom: 8px; }
+.bittle-console .replay { font-size: 11px; padding: 4px 9px; border-color: #58724a; color: #d2edae; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70%; }
+.bittle-console.tabbed .console-tabs button { font-size: 11px; }
+
+/* Seven tabs: wrap onto two rows rather than clipping names like "Robot settings". */
+.console-tabs { flex-wrap: wrap; row-gap: 0; }
+.console-tabs button { flex: 1 0 auto; padding: 6px 8px; }
+
+.playback-mode { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; }
+.playback-mode select { padding: 3px 6px; }

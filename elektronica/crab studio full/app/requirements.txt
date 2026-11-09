@@ -1,0 +1,8 @@
+fastapi==0.115.12
+uvicorn==0.34.2
+pybullet==3.2.7
+python-multipart==0.0.20
+trimesh==4.6.8
+numpy==2.2.5
+httpx==0.28.1
+xacro==2.1.1

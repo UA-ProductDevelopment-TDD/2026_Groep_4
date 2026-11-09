@@ -1,0 +1,26 @@
+/* Serial monitor (shared by Bittle Studio and Bittle Link). Uses the host's --line, --accent, --muted, --text tokens. */
+.serial-monitor { display: flex; flex-direction: column; min-height: 0; height: 100%; gap: 6px; }
+.sm-toolbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; }
+.sm-toolbar select, .sm-toolbar button { font-size: 12px; padding: 4px 8px; }
+.sm-spacer { flex: 1; }
+.sm-list { flex: 1; min-height: 120px; overflow: auto; background: #0b1218; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font: 12px/1.45 Consolas, monospace; }
+.sm-empty { color: var(--muted); font-family: 'Segoe UI', system-ui, sans-serif; margin: 6px 2px; }
+.sm-row { display: grid; grid-template-columns: auto auto 1fr auto; gap: 2px 8px; align-items: baseline; padding: 2px 0; }
+.sm-row.sm-hidden { display: none; }
+.sm-row time { color: #5f6f7b; font-size: 10px; }
+.sm-row code { color: var(--text); white-space: pre-wrap; overflow-wrap: anywhere; font-family: inherit; }
+.sm-tx { border-top: 1px solid #18232c; padding-top: 4px; margin-top: 2px; }
+.sm-tx .sm-arrow, .sm-tx code { color: var(--accent); }
+.sm-rx { padding-left: 18px; }
+.sm-rx .sm-arrow, .sm-rx code { color: #8cc4f0; }
+.sm-origin { justify-self: end; font: 10px 'Segoe UI', system-ui, sans-serif; color: #c7d3da; background: #1c2832; border: 1px solid #2d3a45; border-radius: 9px; padding: 0 7px; white-space: nowrap; }
+.sm-meaning { grid-column: 3 / -1; color: var(--muted); font: 11px 'Segoe UI', system-ui, sans-serif; }
+.sm-rx .sm-meaning { grid-column: 3 / -1; }
+.sm-note { display: block; color: #f4c16d; font-size: 11px; padding: 4px 0; }
+.sm-input { display: flex; gap: 6px; }
+.sm-input input { flex: 1; min-width: 0; font: 12px Consolas, monospace; }
+.sm-input button { font-size: 12px; padding: 5px 10px; }
+
+/* Commands shown for learning while no robot is connected (simulator only, nothing sent). */
+.sm-preview code { opacity: .75; font-style: italic; }
+.sm-badge { font-size: .75em; padding: 0 6px; border-radius: 8px; border: 1px dashed currentColor; opacity: .7; margin-left: 6px; white-space: nowrap; }

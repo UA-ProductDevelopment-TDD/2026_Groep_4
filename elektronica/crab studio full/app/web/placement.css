@@ -1,0 +1,13 @@
+.robot-transform-fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin: 10px 0 14px;
+}
+.robot-transform-fields label {
+  display: grid;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.robot-transform-fields input { width: 100%; }

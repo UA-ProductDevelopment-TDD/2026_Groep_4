@@ -1,0 +1,130 @@
+.export-options {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hardware-connect,
+.hardware-motion,
+.hardware-actions,
+.hardware-command {
+  display: flex;
+  gap: 10px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.hardware-connect label,
+.hardware-motion label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.hardware-motion {
+  padding: 18px 0;
+  margin: 18px 0;
+  border-block: 1px solid var(--line);
+}
+
+.hardware-actions { margin-bottom: 20px; }
+.hardware-status {
+  padding: 10px 12px;
+  margin-top: 14px !important;
+  background: #111a22;
+  border-radius: 6px;
+  color: var(--accent) !important;
+}
+
+.hardware-command { margin-top: 7px; }
+.hardware-command input { flex: 1; min-width: 260px; }
+.hardware-log {
+  height: 150px;
+  overflow: auto;
+  background: #0d151c;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 12px;
+  color: #b8c6d0;
+  font: 12px/1.5 Consolas, monospace;
+  white-space: pre-wrap;
+}
+
+#hardwareDialog { width: min(1060px, 94vw); }
+.hardware-tabs { display: flex; gap: 6px; margin: 12px 0 18px; border-bottom: 1px solid var(--line); }
+.hardware-tabs button { border-bottom: 2px solid transparent; border-radius: 5px 5px 0 0; }
+.hardware-tabs button.selected { color: var(--accent); border-bottom-color: var(--accent); background: #15232d; }
+.hardware-tab.hidden { display: none; }
+.developer-switch { display: flex; gap: 12px; align-items: flex-start; padding: 14px; margin-top: 12px; border: 1px solid var(--line); border-radius: 7px; background: #101922; }
+.developer-switch input { margin-top: 3px; }
+.developer-switch span { display: grid; gap: 4px; }
+.developer-switch small, .function-row small { color: var(--muted); }
+.developer-status { margin: 7px 0; color: var(--muted); font-size: 12px; }
+.developer-status.active { color: #f4c16d; }
+.library-head { display: flex; align-items: end; justify-content: space-between; gap: 18px; }
+.library-head input { width: min(320px, 45%); }
+.library-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.function-list { height: 390px; overflow: auto; border: 1px solid var(--line); border-radius: 7px; background: #0d151c; }
+.function-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 48px; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.function-row > div:first-of-type { display: grid; gap: 2px; }
+.function-row button { white-space: nowrap; }
+.row-actions { display: flex; gap: 5px; }
+.save-motion { display: grid; grid-template-columns: 1fr auto auto; gap: 7px; margin-bottom: 9px; }
+.voice-transcript { min-height: 180px; max-height: 320px; overflow: auto; margin-top: 14px; padding: 12px; border: 1px solid var(--line); border-radius: 7px; background: #0d151c; }
+.voice-transcript p { margin: 5px 0; }
+.voice-transcript .you { color: #d4e5ef; } .voice-transcript .bobby { color: var(--accent); } .voice-transcript .action { color: #f4c16d; }
+.voice-error { color: #ff8d86; min-height: 1.3em; }
+@media (max-width: 760px) { .library-columns { grid-template-columns: 1fr; } .library-head { align-items: stretch; flex-direction: column; } .library-head input { width: 100%; } }
+
+/* Bluetooth panel docked on the right (non-modal), so the 3D view stays visible while driving the robot. */
+#hardwareDialog[open]:not(:modal) { position: fixed; inset: 78px 0 0 auto; margin: 0; width: min(680px, 100vw); height: calc(100vh - 78px); max-height: none; border-radius: 0; border-width: 0 0 0 1px; z-index: 40; box-shadow: -12px 0 40px #0006; }
+#hardwareDialog[open]:not(:modal) .dialog-heading h2 { font-size: 18px; }
+@media (max-width: 850px) { #hardwareDialog[open]:not(:modal) { inset: 0; height: 100vh; } }
+
+/* Top bar: connection status and emergency stop. */
+.connection-pill { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; font-size: 12px; }
+.connection-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #6b7d8a; }
+.connection-pill[data-state="live"] { border-color: #58724a; color: #d2edae; }
+.connection-pill[data-state="live"] .dot { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+.connection-pill[data-state="test"] { border-color: #7a6334; color: #f6d9a0; }
+.connection-pill[data-state="test"] .dot { background: #f4c16d; }
+.global-stop { border-color: #7a4447; background: #3d2224; font-weight: 600; }
+.global-stop:hover { background: #55292c; }
+
+/* Servo setup rows: Test column and a green tick for verified joints. */
+.mapping-header, .mapping-row { grid-template-columns: 2fr .7fr 1fr .7fr .7fr .6fr; }
+.mapping-row button { padding: 5px 8px; font-size: 12px; }
+.mapping-row.verified > span:first-child::after { content: ' ✓'; color: var(--accent); }
+
+/* Save as function dialog. */
+#saveFunctionDialog { width: min(480px, 95vw); }
+.save-function-fields { display: grid; gap: 12px; margin: 16px 0; }
+.save-function-fields label { display: flex; flex-direction: column; gap: 6px; font-size: 12px; }
+
+/* Inspector Control tab: joints, commands, then robot placement (collapsible). */
+.control-section.commands { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--line); }
+.control-section.commands .console-status { font-size: 12px; padding: 6px 10px; line-height: 1.35; }
+details.control-section { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 6px; }
+details.control-section > summary { cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; list-style: none; padding: 6px 0; }
+details.control-section > summary::-webkit-details-marker { display: none; }
+details.control-section > summary h3 { margin: 0; }
+details.control-section > summary h3::before { content: '▸ '; color: var(--muted); }
+details.control-section[open] > summary h3::before { content: '▾ '; }
+details.control-section > summary span { font-size: 11px; color: var(--muted); }
+
+/* Joints tab header: just a slim Zero pose button. */
+#jointsSection .inspector-intro { display: none; }
+#jointsSection .presets { display: flex; justify-content: flex-end; margin: 0 0 6px; }
+#jointsSection .presets button { padding: 4px 12px; font-size: 12px; }
+
+/* Floating serial monitor window (opens when a robot connects; Window → Serial monitor). */
+.serial-window { position: fixed; right: 16px; bottom: 16px; z-index: 60; width: min(520px, calc(100vw - 32px)); height: min(380px, calc(100vh - 120px)); min-width: 300px; min-height: 200px; display: flex; flex-direction: column; background: var(--panel); border: 1px solid #4f606c; border-radius: 10px; box-shadow: 0 16px 50px #000a; resize: both; overflow: hidden; }
+.serial-window.hidden { display: none; }
+.serial-head { display: flex; align-items: center; gap: 10px; padding: 6px 8px 6px 12px; background: #2b3036; cursor: move; user-select: none; }
+.serial-head h2 { font-size: 12px; margin: 0; }
+.serial-head .caption { margin-left: auto; font-size: 10px; color: var(--muted); }
+#serialMonitor { flex: 1; min-height: 0; padding: 8px; }
+
+/* The Bluetooth panel only holds the connection now: compact, docked at the top right. */
+#hardwareDialog[open]:not(:modal) { width: min(440px, 100vw); height: auto; max-height: calc(100vh - 78px); bottom: auto; border-width: 0 0 1px 1px; border-radius: 0 0 0 10px; }
+.voice-dialog[open]:not(:modal) { position: fixed; top: 90px; right: 16px; left: auto; margin: 0; width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 110px); z-index: 45; box-shadow: 0 16px 50px #000a; }
